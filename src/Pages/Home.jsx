@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import Gallery from "../Components/Gallery";
 
 const Article = ({articleList,error}) => {

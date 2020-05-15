@@ -4,8 +4,6 @@ import { MarkdownConverter } from "../Tools";
 
 const Article  = () => {
   const { slug } = useParams();
-  console.log(slug);
-
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
 
@@ -22,20 +20,15 @@ const Article  = () => {
     }
   };
 
-
-
   useEffect(() => {
-    console.log("slug changed");
     fetch(`http://localhost:1337/articles?slug=${slug}`)
       .then((response) => response.json())
       .then((response) => {
-        console.log("in fetch");
-        console.log(JSON.stringify(response));
         setArticle(response[0]);
       })
       .catch((error) => {
         console.log(error);
-        setError("An error occurreds");
+        setError("An error occurred");
       });
   }, [slug]);
 
