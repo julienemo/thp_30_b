@@ -22,6 +22,8 @@ const Article  = () => {
     }
   };
 
+
+
   useEffect(() => {
     console.log("slug changed");
     fetch(`http://localhost:1337/articles?slug=${slug}`)
@@ -43,7 +45,13 @@ const Article  = () => {
       <h1>{article.title}</h1>
       <p>{article.date}</p>
       {handleImage(article)}
-      <div>{article.content}</div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: article.content
+            ? MarkdownConverter.makeHtml(article.content)
+            : "",
+        }}
+      />
     </>
   );
 
