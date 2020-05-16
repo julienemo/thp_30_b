@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { MarkdownConverter } from "../Tools";
 
-const Article  = () => {
+const Article = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
@@ -32,6 +32,8 @@ const Article  = () => {
       });
   }, [slug]);
 
+  const singleTag = (tag) => (<div id={tag.slug} style={{color: tag.color}}>{tag.title}</div>)
+
   const display = (article) => (
     <>
       {" "}
@@ -45,6 +47,7 @@ const Article  = () => {
             : "",
         }}
       />
+      <div className='tag_zone'>{article.tags.map((tag)=>singleTag(tag))}</div>
     </>
   );
 
